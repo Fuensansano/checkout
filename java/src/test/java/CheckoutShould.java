@@ -81,4 +81,11 @@ public class CheckoutShould {
     cart.addItem("carrot", 50d);
     assertEquals(310d,cart.total());
   }
+
+  @Test
+  public void offers_price_buy_two_orange() {
+    cart.addItem("orange", 30d);
+    cart.addItem("orange", 30d);
+    assertEquals(45d,cart.total());
+  }
 }
