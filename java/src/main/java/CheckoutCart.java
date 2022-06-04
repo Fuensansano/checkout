@@ -1,10 +1,9 @@
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.stream.LongStream;
 
 public class CheckoutCart {
+  public static final double CARROT_PRICE_OFFER = 130d;
+  public static final int CARROT_NUMBER_OFFER = 3;
   List<Product> itemsProvisional = new ArrayList<>();
 
   public Double total() {
@@ -20,9 +19,9 @@ public class CheckoutCart {
     for (Product item: itemsProvisional) {
 
       if (carrotCount == 3){
-        return 130d;
-      } else if ( carrotCount > 3) {
-        return 130d + 50 * (carrotCount - 3);
+        return CARROT_PRICE_OFFER;
+      } else if ( carrotCount > CARROT_NUMBER_OFFER && item.name().equals("carrot")) {
+        return CARROT_PRICE_OFFER + item.price() * (carrotCount - CARROT_NUMBER_OFFER);
       } else {
         totalPrice += item.price();
       }
