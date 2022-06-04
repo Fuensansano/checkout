@@ -40,6 +40,4 @@ public class CheckoutShould {
     assertEquals(130d,cart.total());
   }
 
-
-
 }

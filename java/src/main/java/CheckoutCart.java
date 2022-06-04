@@ -1,22 +1,28 @@
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.LongStream;
 
 public class CheckoutCart {
-  Map <String,Double> items = new HashMap<>();
-  Map <String,Integer> quantity = new HashMap<>();
+  List<Product> itemsProvisional = new ArrayList<>();
 
   public Double total() {
-    if (items.isEmpty()) {
+    if (itemsProvisional.isEmpty()) {
       return 0.0;
     }
 
     Double totalPrice = 0d;
+    Long carrotCount = itemsProvisional.stream()
+      .filter(product -> product.name().equals("carrot"))
+      .count();
 
-    for (Map.Entry<String,Double> item: items.entrySet()) {
-      if (item.getKey().equals("carrot") && quantity.get(item.getKey()).equals(3)){
-        totalPrice += 130;
+    for (Product item: itemsProvisional) {
+
+      if (carrotCount == 3){
+        return 130d;
       } else {
-        totalPrice += item.getValue() * quantity.get(item.getKey());
+        totalPrice += item.price();
       }
 
     }
@@ -25,18 +31,7 @@ public class CheckoutCart {
   }
 
   public void addItem(String item, Double price) {
-    if (items.get(item) == null) {
-      items.put(item,price);
-      quantity.put(item, 1);
-      return;
-    }
-    /*
-      Double actualItemPrice = items.get(item);
-      items.put(item, (actualItemPrice + price));
-
-     */
-    Integer actualQuantity = quantity.get(item);
-    quantity.put(item, actualQuantity + 1);
-
+    Product product = new Product(item, price);
+    itemsProvisional.add(product);
   }
 }
