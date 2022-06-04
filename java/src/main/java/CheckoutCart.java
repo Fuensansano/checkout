@@ -4,6 +4,7 @@ import java.util.Map;
 public class CheckoutCart {
   Map <String,Double> items = new HashMap<>();
 
+
   public Double total() {
     if (items.isEmpty()) {
       return 0.0;
@@ -19,6 +20,11 @@ public class CheckoutCart {
   }
 
   public void addItem(String item, Double price) {
-      items.put(item, price);
+    if (items.get(item) == null) {
+      items.put(item,price);
+      return;
+    }
+      Double actualItemPrice = items.get(item);
+      items.put(item, (actualItemPrice + price));
   }
 }
