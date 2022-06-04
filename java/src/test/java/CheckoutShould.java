@@ -67,6 +67,18 @@ public class CheckoutShould {
     cart.addItem("carrot", 50d);
     cart.addItem("carrot", 50d);
     cart.addItem("carrot", 50d);
-    assertEquals(230d,cart.total());
+    assertEquals(260d,cart.total());
+  }
+
+  @Test
+  public void offers_price_buy_seven_carrots() {
+    cart.addItem("carrot", 50d);
+    cart.addItem("carrot", 50d);
+    cart.addItem("carrot", 50d);
+    cart.addItem("carrot", 50d);
+    cart.addItem("carrot", 50d);
+    cart.addItem("carrot", 50d);
+    cart.addItem("carrot", 50d);
+    assertEquals(310d,cart.total());
   }
 }
