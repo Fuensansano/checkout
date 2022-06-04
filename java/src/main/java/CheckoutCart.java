@@ -8,7 +8,14 @@ public class CheckoutCart {
     if (items.isEmpty()) {
       return 0.0;
     }
-     return items.get("carrot");
+
+    Double totalPrice = 0d;
+
+    for (Map.Entry<String,Double> item: items.entrySet()) {
+      totalPrice += item.getValue();
+    }
+
+    return totalPrice;
   }
 
   public void addItem(String item, Double price) {
