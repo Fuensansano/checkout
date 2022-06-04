@@ -1,6 +1,6 @@
 public class CheckoutCart {
 
   public Double total() {
-    return 1.0;
+    return 0d;
   }
 }
