@@ -25,4 +25,12 @@ public class CheckoutShould {
     assertEquals(80d,cart.total());
   }
 
+  @Test
+  public void add_same_items_twice_to_checkout_cart() {
+    CheckoutCart cart = new CheckoutCart();
+    cart.addItem("carrot", 50d);
+    cart.addItem("carrot", 50d);
+    assertEquals(100d,cart.total());
+  }
+
 }
