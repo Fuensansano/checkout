@@ -21,6 +21,8 @@ public class CheckoutCart {
 
       if (carrotCount == 3){
         return 130d;
+      } else if ( carrotCount > 3) {
+        return 130d + 50;
       } else {
         totalPrice += item.price();
       }
