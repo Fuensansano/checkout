@@ -22,7 +22,7 @@ public class CheckoutCart {
       if (carrotCount == 3){
         return 130d;
       } else if ( carrotCount > 3) {
-        return 130d + 50;
+        return 130d + 50 * (carrotCount - 3);
       } else {
         totalPrice += item.price();
       }
