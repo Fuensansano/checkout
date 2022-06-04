@@ -1,6 +1,4 @@
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class CheckoutCart {
@@ -13,7 +11,7 @@ public class CheckoutCart {
      return items.get("carrot");
   }
 
-  public void addItem(String carrot, Double i) {
-      items.put(carrot, i);
+  public void addItem(String item, Double price) {
+      items.put(item, price);
   }
 }
