@@ -4,6 +4,6 @@ public class CheckoutCart {
     return 0d;
   }
 
-  public void addItem(String carrot) {
+  public void addItem(String carrot, Double i) {
   }
 }

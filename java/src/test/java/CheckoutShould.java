@@ -14,7 +14,7 @@ public class CheckoutShould {
   @Test
   public void add_item_to_checkout_cart() {
     CheckoutCart cart = new CheckoutCart();
-    cart.addItem("carrot");
+    cart.addItem("carrot", 50d);
     assertEquals(50,cart.total());
   }
 
