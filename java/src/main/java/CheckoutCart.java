@@ -22,7 +22,8 @@ public class CheckoutCart {
         int timesToApplyOffer = (int) (carrotCount / CARROT_NUMBER_OFFER);
         return CARROT_PRICE_OFFER * timesToApplyOffer;
       } else if ( carrotCount > CARROT_NUMBER_OFFER && item.name().equals("carrot")) {
-        return CARROT_PRICE_OFFER + item.price() * (carrotCount - CARROT_NUMBER_OFFER);
+        int timesToApplyOffer = (int) (carrotCount / CARROT_NUMBER_OFFER);
+        return (CARROT_PRICE_OFFER * timesToApplyOffer) + item.price() * (carrotCount - (CARROT_NUMBER_OFFER * timesToApplyOffer));
       } else {
         totalPrice += item.price();
       }
