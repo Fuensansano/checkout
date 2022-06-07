@@ -73,6 +73,13 @@ public class CheckoutShould {
     assertEquals(120d,cart.total());
   }
 
+  @Test
+  public void two_offer_items() {
+    addItemsToCart("orange",3,30);
+    addItemsToCart("carrot",4,50);
+    assertEquals(255d,cart.total());
+  }
+
   public void addItemsToCart(String name, int quantity, double price) {
     for (int i = 0; i < quantity ; i++) {
       cart.addItem(name,price);
