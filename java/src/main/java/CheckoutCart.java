@@ -1,5 +1,11 @@
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.function.Function;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 public class CheckoutCart {
   public static final double CARROT_PRICE_OFFER = 130d;
@@ -22,13 +28,17 @@ public class CheckoutCart {
       .filter(product -> product.name().equals("orange"))
       .count();
 
-    for (Product item: itemsProvisional) {
-      if ( carrotCount >= CARROT_NUMBER_OFFER && item.name().equals("carrot")) {
+    List<Product> products = itemsProvisional.stream()
+      .filter(distinctByKey(Product::name))
+      .collect(Collectors.toList());
+
+    for (Product item: products) {
+      if (item.name().equals("carrot")) {
         int timesToApplyOffer = (int) (carrotCount / CARROT_NUMBER_OFFER);
-        return (CARROT_PRICE_OFFER * timesToApplyOffer) + item.price() * (carrotCount - (CARROT_NUMBER_OFFER * timesToApplyOffer));
-      } else if (orangeCount >= ORANGE_NUMBER_OFFER && item.name().equals("orange")) {
+        totalPrice += (CARROT_PRICE_OFFER * timesToApplyOffer) + item.price() * (carrotCount - (CARROT_NUMBER_OFFER * timesToApplyOffer));
+      } else if (item.name().equals("orange")) {
         int timesToApplyOfferForOrange = (int) (orangeCount / ORANGE_NUMBER_OFFER);
-        return (ORANGE_PRICE_OFFER * timesToApplyOfferForOrange) + item.price() * (orangeCount - (ORANGE_NUMBER_OFFER * timesToApplyOfferForOrange));
+        totalPrice += (ORANGE_PRICE_OFFER * timesToApplyOfferForOrange) + item.price() * (orangeCount - (ORANGE_NUMBER_OFFER * timesToApplyOfferForOrange));
       }else {
         totalPrice += item.price();
       }
@@ -41,5 +51,11 @@ public class CheckoutCart {
   public void addItem(String item, Double price) {
     Product product = new Product(item, price);
     itemsProvisional.add(product);
+  }
+
+  public <T> Predicate<T> distinctByKey(Function<? super T, Object> keyExtractor)
+  {
+    Map<Object, Boolean> map = new HashMap<>();
+    return t -> map.putIfAbsent(keyExtractor.apply(t), Boolean.TRUE) == null;
   }
 }
