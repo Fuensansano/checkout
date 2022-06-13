@@ -11,6 +11,10 @@ public class CheckoutShould {
     cart = new CheckoutCart();
   }
 
+  @Test
+  public void total_empty_cart() {
+    assertEquals(0,cart.total());
+  }
 
   @Test
   public void add_item_to_checkout_cart() {
