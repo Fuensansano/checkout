@@ -33,13 +33,13 @@ public class CheckoutCart {
     return  (offerPrice * timesToApplyOffer) + pricePerUnit * (itemCount - (numberOfItemsToApplyOffer * timesToApplyOffer));
   }
 
-  public void addItem(String item, Double price) {
+  public void addItem(String item, Double price, int quantity) {
     if (item.equals("carrot")) {
       carrotPricePerUnit = price;
-      carrotCount++;
+      carrotCount = quantity;
     } else if (item.equals("orange")) {
       orangePricePerUnit = price;
-      orangeCount++;
+      orangeCount = quantity;
     }
     Product product = new Product(item, price);
     itemsProvisional.add(product);
